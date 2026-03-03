@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ur" dir="rtl">
+<html lang="sd" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>لاگ ان فارم - Solangi Connect</title>
+  <title>لاگ ان فارم - سولنگي ڪنيڪٽ</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
   
   <script>
     tailwind.config = {
@@ -19,8 +19,7 @@
             'mint-border': '#d1fae5'
           },
           fontFamily: {
-            'urdu': ['Noto Nastaliq Urdu', 'serif'],
-            'jakarta': ['Plus Jakarta Sans', 'sans-serif']
+            'nastaliq': ['Noto Nastaliq Urdu', 'serif']
           }
         }
       }
@@ -29,18 +28,19 @@
 
   <style>
     body {
-      font-family: 'Noto Nastaliq Urdu', 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-family: 'nastaliq', serif;
       background: #f0fdfa;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 1.5rem;
+      margin: 0;
     }
     .login-card {
       background: white;
       border-radius: 1.5rem;
-      box-shadow: 0 20px 40px rgba(34, 197, 94, 0.08);
+      box-shadow: 0 10px 30px rgba(22, 101, 52, 0.1);
       border: 1px solid #d1fae5;
       width: 100%;
       max-width: 420px;
@@ -48,36 +48,32 @@
       text-align: center;
     }
     .heading-main {
-      font-size: 2.8rem;
-      line-height: 1;
+      font-size: 3.2rem;
+      line-height: 1.1;
       font-weight: 700;
       color: #166534;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
     }
     .heading-sub {
-      font-size: 1.05rem;
+      font-size: 1.25rem;
       color: #4b5563;
-      margin-bottom: 2rem;
-    }
-    .input-wrapper {
-      margin-bottom: 2rem;
-      text-align: right;
+      margin-bottom: 2.5rem;
     }
     label {
       display: block;
+      text-align: right;
       margin-bottom: 0.6rem;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 600;
       color: #1f2937;
     }
     input {
       width: 100%;
-      padding: 1rem 3.5rem 1rem 1.25rem;  /* دائیں طرف eye کے لیے extra padding */
+      padding: 1rem 3.5rem 1rem 1.25rem;
       border: 1px solid #cbd5e1;
       border-radius: 1rem;
-      font-size: 1rem;
+      font-size: 1.05rem;
       background: #f9fafb;
-      transition: all 0.2s ease;
       text-align: right;
       direction: rtl;
     }
@@ -92,22 +88,20 @@
     }
     .eye-btn {
       position: absolute;
-      left: 1rem;           /* RTL میں دائیں طرف */
+      left: 1.2rem;
       top: 50%;
       transform: translateY(-50%);
       background: transparent;
       border: none;
       cursor: pointer;
       color: #6b7280;
-      padding: 0;
-      z-index: 10;
     }
     .extra-links {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin: 1.5rem 0 2rem 0;
-      font-size: 0.95rem;
+      font-size: 1rem;
       color: #374151;
     }
     .btn-login {
@@ -115,22 +109,20 @@
       padding: 1.1rem;
       background: linear-gradient(to right, #166534, #22c55e);
       color: white;
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       font-weight: bold;
       border-radius: 1rem;
       border: none;
       cursor: pointer;
-      transition: all 0.3s ease;
     }
     .btn-login:hover {
       transform: translateY(-2px);
       box-shadow: 0 10px 25px rgba(34, 197, 94, 0.3);
     }
     .register-link {
-      text-align: center;
-      margin-top: 1.5rem;
+      font-size: 1.05rem;
       color: #4b5563;
-      font-size: 1rem;
+      margin-top: 1.5rem;
     }
     .register-link a {
       color: #166534;
@@ -145,11 +137,11 @@
 
     <!-- Heading -->
     <div class="text-center mb-10">
-      <h1 class="heading-main font-bold text-solangi-dark urdu-text">
+      <h1 class="heading-main text-solangi-dark">
         لاگ ان ڪريو
       </h1>
-      <p class="heading-sub urdu-text">
-        اپنھنجو اڪائونٽ استعمال ڪريو
+      <p class="heading-sub">
+        پنھنجو اڪائونٽ استعمال ڪريو
       </p>
     </div>
 
@@ -157,22 +149,22 @@
     <form id="loginForm">
 
       <!-- Email or Phone -->
-      <div class="input-wrapper">
-        <label class="urdu-text">
-          ای میل یا فون نمبر <span class="text-red-500">*</span>
+      <div class="mb-6">
+        <label>
+          اي ميل يا فون نمبر <span class="text-red-500">*</span>
         </label>
         <input 
           type="text" 
           id="identifier" 
-          placeholder="example@email.com|aurangzaib_solangi"
+          placeholder="example@email.com | laurangzaib_solangi"
           required 
         />
       </div>
 
       <!-- Password -->
-      <div class="input-wrapper">
-        <label class="urdu-text">
-         پاسورڊ يا نمبر داخل ڪريو<span class="text-red-500 ">*</span>
+      <div class="mb-6">
+        <label>
+          پاسورڊ يا نمبر داخل ڪريو <span class="text-red-500">*</span>
         </label>
         <div class="password-wrapper">
           <input 
@@ -192,8 +184,8 @@
             </svg>
           </button>
         </div>
-        <p class="text-sm text-gray-600 mt-2.5 text-right urdu-text">
-          پاسورڊ وساري ويٺا آهيو؟ ته فون نمبر استعمال ڪريو
+        <p class="text-sm text-gray-600 mt-3 text-right">
+          پاسورڊ وساري ويٺو آهيو؟ ته فون نمبر استعمال ڪريو
         </p>
       </div>
 
@@ -201,23 +193,99 @@
       <div class="extra-links">
         <label class="flex items-center cursor-pointer">
           <input type="checkbox" class="w-5 h-5 accent-solangi-accent rounded ml-2">
-          <span class="urdu-text">ياد رکو</span>
+          <span>ياد رکو</span>
         </label>
-        <a href="#" class="text-solangi-accent hover:underline urdu-text">پاسورڊ وساري ڇڏيو؟</a>
+        <a href="#" class="text-solangi-accent hover:underline">پاسورڊ وساري ڇڏيو؟</a>
       </div>
 
       <!-- Login Button -->
-      <button type="submit" class="btn-login urdu-text">
+      <button type="submit" class="btn-login">
         لاگ ان ڪريو
       </button>
 
       <!-- Register Link -->
-      <div class="register-link urdu-text">
-       اڪائونٽ ناهي؟
+      <div class="register-link">
+        اڪائونٽ ناهي؟ 
         <a href="registration.html">ھاڻي رجسٽر ڪريو</a>
       </div>
 
     </form>
+  </div>
+
+  <!-- Password Reset Modal (Dynamic OTP System) -->
+  <div id="resetModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full mx-4 overflow-hidden">
+      <div class="p-8">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-6">
+          <h2 id="modalTitle" class="text-2xl font-bold text-solangi-dark">پاسورڊ ري سيٽ ڪريو</h2>
+          <button onclick="closeModal()" class="text-gray-400 hover:text-red-500 text-3xl leading-none">×</button>
+        </div>
+
+        <!-- Step 1: Identifier -->
+        <div id="step1">
+          <p class="text-gray-600 mb-4 text-right">پنھنجو رجسٽر ٿيل اي ميل يا فون نمبر داخل ڪريو
+</p>
+          <input 
+            id="resetIdentifier" 
+            type="text" 
+            class="w-full p-4 border border-mint-border rounded-2xl text-right focus:border-solangi-accent" 
+            placeholder="example@email.com | 03123456789" 
+          />
+          <button onclick="sendOTP()" class="mt-6 w-full btn-login">
+            OTP موڪليو
+          </button>
+        </div>
+
+        <!-- Step 2: OTP -->
+        <div id="step2" class="hidden">
+          <p id="sentMessage" class="text-green-600 mb-4 text-right"></p>
+          <label class="block text-right mb-3 font-semibold">OTP داخل ڪريو <span class="text-red-500">*</span></label>
+          <input 
+            id="otpInput" 
+            type="text" 
+            maxlength="6" 
+            class="w-full p-5 border border-mint-border rounded-2xl text-center text-4xl tracking-[12px] font-mono focus:border-solangi-accent" 
+            placeholder="______" 
+          />
+          <button onclick="verifyOTP()" class="mt-6 w-full btn-login">
+            تصدیق کریو
+          </button>
+          <button onclick="backToStep1()" class="mt-4 w-full text-solangi-accent text-sm font-medium">
+            OTP دوبارہ بھیجو
+          </button>
+        </div>
+
+        <!-- Step 3: New Password -->
+        <div id="step3" class="hidden">
+          <p class="text-gray-600 mb-6 text-right">نئون پاسورڊ سيٽ ڪريو</p>
+          
+          <div class="mb-6">
+            <label class="block text-right mb-2">نئون پاسورڊ</label>
+            <input 
+              id="newPassword" 
+              type="password" 
+              class="w-full p-4 border border-mint-border rounded-2xl text-right" 
+              placeholder="نیا پاسورڊ داخل کریو" 
+            />
+          </div>
+          
+          <div class="mb-6">
+            <label class="block text-right mb-2">ٻيهر پاسورڊ</label>
+            <input 
+              id="confirmPassword" 
+              type="password" 
+              class="w-full p-4 border border-mint-border rounded-2xl text-right" 
+              placeholder="ٻيهر پاسورڊ داخل کریو" 
+            />
+          </div>
+
+          <button onclick="updatePassword()" class="w-full btn-login">
+           پاسورڊ اپڊيٽ ڪريو
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -236,8 +304,95 @@
 
     document.getElementById('loginForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      alert("لاگ ان کوشش شروع ہو گئی!   ");
+      alert("لاگ ان ڪوشش شروع ٿي وئي!");
     });
+
+    // ==================== DYNAMIC FORGOT PASSWORD + OTP SYSTEM ====================
+    let currentOTP = null;
+    let resetIdentifier = '';
+
+    function forgotPassword() {
+      document.getElementById('resetModal').classList.remove('hidden');
+      showStep(1);
+      
+      // pre-fill if user already typed in login form
+      const ident = document.getElementById('identifier').value.trim();
+      if (ident) {
+        document.getElementById('resetIdentifier').value = ident;
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('resetModal').classList.add('hidden');
+      showStep(1);
+    }
+
+    function showStep(step) {
+      document.getElementById('step1').classList.add('hidden');
+      document.getElementById('step2').classList.add('hidden');
+      document.getElementById('step3').classList.add('hidden');
+      document.getElementById('step' + step).classList.remove('hidden');
+    }
+
+    function sendOTP() {
+      resetIdentifier = document.getElementById('resetIdentifier').value.trim();
+      
+      if (!resetIdentifier) {
+        alert("❌ ای میل یا فون نمبر داخل ڪريو!");
+        return;
+      }
+
+      // Dynamic OTP generate (6 digit)
+      currentOTP = Math.floor(100000 + Math.random() * 900000).toString();
+
+      // Demo: real app mein yahan SMS/Email API call hoga
+      alert(`✅ OTP تیار ٿيو!\n\nآپ کے رجسٹرڈ ${resetIdentifier} تي بھیج دیو ويو.\n\nڈیمو کے لیے OTP: ${currentOTP}\n(حقیقی ایپ میں خودکار SMS/Email آئے گا)`);
+
+      document.getElementById('sentMessage').innerHTML = `OTP آپ کے رجسٹرڈ <strong>${resetIdentifier}</strong> تي بھیج دیو ويو آهي!`;
+      showStep(2);
+    }
+
+    function verifyOTP() {
+      const enteredOTP = document.getElementById('otpInput').value.trim();
+      
+      if (enteredOTP === currentOTP) {
+        alert("✅ OTP درست آهي!");
+        showStep(3);
+      } else {
+        alert("❌ غلط OTP! ٻيهر  کوشش ڪريو.");
+      }
+    }
+
+    function backToStep1() {
+      showStep(1);
+    }
+
+    function updatePassword() {
+      const newPass = document.getElementById('newPassword').value;
+      const confirmPass = document.getElementById('confirmPassword').value;
+
+      if (!newPass || newPass.length < 6) {
+        alert("❌ پاسورڊ گهٽ ۾ گهٽ 6 اکرن جو هجڻ گهرجي!");
+        return;
+      }
+
+      if (newPass !== confirmPass) {
+        alert("❌ پاسورڊ ميچ نه ٿا ڪن!");
+        return;
+      }
+
+      // Demo: real app mein yahan database update hoga
+      alert(`🎉 مبارکباد! پاسورڊ کامیابی سان ری سیٹ ٿي ويو.\n\nنیا پاسورڊ: ${newPass}\n\nھاڻي لاگ ان ڪري سگھو ٿا!`);
+
+      closeModal();
+    }
+
+    // Forgot password link ko dynamic banaya (koi HTML change nahi kiya)
+    document.querySelector('.extra-links a').addEventListener('click', function(e) {
+      e.preventDefault();
+      forgotPassword();
+    });
+    // ======================================================================
   </script>
 </body>
 </html>

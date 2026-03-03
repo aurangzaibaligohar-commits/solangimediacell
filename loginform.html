@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>لاگ ان فارم</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Noto Nastaliq Urdu', system-ui, sans-serif; }
+    input:focus { outline: none; border-color: #10b981; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2); }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-green-50 to-white min-h-screen flex items-center justify-center p-4">
+
+  <div class="w-full max-w-md bg-white rounded-3xl shadow-2xl p-8">
+    
+    <!-- Heading -->
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-green-700">لاگ ان ڪريو</h1>
+      <p class="text-gray-600 mt-2">اپنھنجو اڪائونٽ استعمال ڪريو</p>
+    </div>
+
+    <!-- Login Form -->
+    <form id="loginForm" class="space-y-6">
+
+      <!-- Username ya Email -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+          یوزر نیم یا ای میل <span class="text-red-500">*</span>
+        </label>
+        <input 
+          type="text" 
+          id="identifier" 
+          placeholder="aurangzaib_solangi یا example@email.com"
+          required 
+          class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:border-green-500 transition"
+        />
+      </div>
+
+      <!-- Password ya Phone Number -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+          پاس ورڈ یا فون نمبر <span class="text-red-500">*</span>
+        </label>
+        <div class="relative">
+          <input 
+            type="password" 
+            id="credential" 
+            placeholder="پاس ورڈ یا +92 3XX XXXXXXX"
+            required 
+            class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:border-green-500 transition pr-12"
+          />
+          <!-- Eye icon for show/hide -->
+          <button 
+            type="button" 
+            onclick="toggleCredentialVisibility()"
+            class="absolute inset-y-0 right-4 flex items-center text-gray-500 hover:text-green-600"
+          >
+            <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+          </button>
+        </div>
+        <p class="text-xs text-gray-500 mt-2">
+        پاسورڊ وساري ويٺا آهيو؟ ته فون نمبر استعمال ڪريو
+        </p>
+      </div>
+
+      <!-- Submit Button -->
+      <button 
+        type="submit" 
+        class="w-full py-4 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-2xl transition shadow-md"
+      >لاگ ان ڪريو
+      </button>
+
+      <!-- Extra links -->
+      <div class="text-center text-sm text-gray-600 mt-6">
+      اڪائونٽ ناهي؟
+        <a href="registration.html" class="text-green-600 hover:underline font-medium">
+          هاڻي رجسٽر ڪريو
+        </a>
+      </div>
+
+    </form>
+  </div>
+
+  <script>
+    // Password / Phone show/hide toggle
+    function toggleCredentialVisibility() {
+      const input = document.getElementById('credential');
+      const eyeIcon = document.getElementById('eyeIcon');
+
+      if (input.type === 'password') {
+        input.type = 'text';
+        eyeIcon.innerHTML = `
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.542 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+        `;
+      } else {
+        input.type = 'password';
+        eyeIcon.innerHTML = `
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+        `;
+      }
+    }
+
+    // Form submit handling (demo purpose)
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const identifier = document.getElementById('identifier').value.trim();
+      const credential = document.getElementById('credential').value.trim();
+
+      if (!identifier || !credential) {
+        alert("براہ کرم تمام فیلڈز بھریں!");
+        return;
+      }
+
+      // Yeh real backend mein replace hoga
+      // Abhi sirf demo alert
+      alert(`لاگ ان کی کوشش:\nIdentifier: ${identifier}\nCredential: ${credential}\n\n(یہ صرف ٹیسٹ ہے – اصل میں بیک اینڈ سے چیک ہوگا)`);
+
+      // Agar sahi login ho to dashboard pe redirect kar sakte ho
+      // window.location.href = "dashboard.html";
+    });
+  </script>
+</body>
+</html>

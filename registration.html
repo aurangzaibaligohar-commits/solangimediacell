@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="ur" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .step { display: none; }
+    .step.active { display: block; }
+    .progress-bar { transition: all 0.4s; }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-green-50 to-white min-h-screen font-sans">
+
+  <div class="max-w-2xl mx-auto pt-12 pb-20 px-4">
+    <!-- Header -->
+    <div class="text-center mb-10">
+      <h1 class="text-4xl font-bold text-green-700">رجسٹریشن فارم</h1>
+      <p class="text-gray-600 mt-2">User Registration Form</p>
+    </div>
+
+    <!-- Progress -->
+    <div class="flex justify-between mb-8 px-4">
+      <div onclick="goToStep(1)" class="cursor-pointer text-center flex-1">
+        <div id="step1-dot" class="w-8 h-8 mx-auto rounded-full bg-green-600 text-white flex items-center justify-center text-sm font-bold">1</div>
+        <p class="text-xs mt-2 text-green-700">ذاتي معلومات</p>
+      </div>
+      <div onclick="goToStep(2)" class="cursor-pointer text-center flex-1">
+        <div id="step2-dot" class="w-8 h-8 mx-auto rounded-full bg-gray-300 flex items-center justify-center text-sm font-bold">2</div>
+        <p class="text-xs mt-2 text-gray-500">رابطو ۽ پتو</p>
+      </div>
+      <div onclick="goToStep(3)" class="cursor-pointer text-center flex-1">
+        <div id="step3-dot" class="w-8 h-8 mx-auto rounded-full bg-gray-300 flex items-center justify-center text-sm font-bold">3</div>
+        <p class="text-xs mt-2 text-gray-500">پيشو ۽ ٻيا</p>
+      </div>
+    </div>
+
+    <form id="regForm" class="bg-white shadow-2xl rounded-3xl p-8">
+
+      <!-- Step 1 -->
+      <div id="step1" class="step active">
+        <h2 class="text-2xl font-semibold mb-6 text-green-700">ذاتي معلومات</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium mb-2">Full Name *</label>
+            <input type="text" id="name" required class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-2">Father Name *</label>
+            <input type="text" id="father" required class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-2">Cast *</label>
+            <input type="text" id="cast" required class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-2">Age *</label>
+            <input type="number" id="age" min="10" max="100" required class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium mb-2">Username (login ke liye) *</label>
+            <input type="text" id="username" required placeholder="like: aurangzaib_solangi" class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-2">Password *</label>
+            <div class="relative">
+              <input 
+                type="password" 
+                id="password" 
+                required 
+                placeholder=" Write Strong password " 
+                class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500 pr-12"
+                oninput="checkPasswordStrength()"
+              >
+              <button 
+                type="button" 
+                onclick="togglePasswordVisibility()" 
+                class="absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-green-600"
+              >
+                <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+              </button>
+            </div>
+            <div id="passwordStrength" class="mt-2 text-sm font-medium"></div>
+          </div>
+
+          <div class="col-span-1 md:col-span-2">
+            <label class="block text-sm font-medium mb-2">Confirm Password *</label>
+            <div class="relative">
+              <input 
+                type="password" 
+                id="confirmPassword" 
+                required 
+                placeholder="write again Password  " 
+                class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500 pr-12"
+              >
+              <button 
+                type="button" 
+                onclick="toggleConfirmPasswordVisibility()" 
+                class="absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-green-600"
+              >
+                <svg id="eyeIconConfirm" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Gender section with login link -->
+          <div class="col-span-2">
+            <label class="block text-sm font-medium mb-2">Gender/ جنس *</label>
+            <div class="flex gap-8 mt-3">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="gender" value="Male" class="w-5 h-5 accent-green-600" required> Male
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="gender" value="Female" class="w-5 h-5 accent-green-600"> Female
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="gender" value="Other" class="w-5 h-5 accent-green-600"> Other
+              </label>
+            </div>
+
+            <div class="mt-5 text-center sm:text-left text-sm">
+              <span class="text-gray-600">اڳ ۾ ئي هڪ اڪائونٽ آهي؟ </span>
+              <a href="loginform.html" class="text-green-700 font-semibold hover:underline">
+                لاگ ان ڪيو
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div id="step2" class="step">
+        <h2 class="text-2xl font-semibold mb-6 text-green-700">رابطو ۽ پتو</h2>
+        <div class="space-y-6">
+          <div>
+            <label class="block text-sm font-medium mb-2">Phone Number <span class="text-red-500">*</span></label>
+            <input type="tel" id="phone" placeholder="+92 3XX XXXXXXX" required class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-2">Email Address <span class="text-red-500">*</span></label>
+            <input type="email" id="email" required class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-2">Complete Address <span class="text-red-500">*</span></label>
+            <textarea id="address" rows="3" required class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500"></textarea>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div>
+              <label class="block text-sm font-medium mb-2">Province <span class="text-red-500">*</span></label>
+              <select id="province" required onchange="updateDistrictsAndCities()" class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+                <option value="">Select Province</option>
+                <option value="Sindh">Sindh</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Khyber Pakhtunkhwa">Khyber Pakhtunkhwa</option>
+                <option value="Balochistan">Balochistan</option>
+                <option value="Gilgit-Baltistan">Gilgit-Baltistan</option>
+                <option value="Azad Kashmir">Azad Jammu & Kashmir</option>
+                <option value="Islamabad">Islamabad Capital Territory</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">District <span class="text-red-500">*</span></label>
+              <select id="district" required class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+                <option value="">Select Province First</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">City</label>
+              <select id="city" class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+                <option value="">Select District First</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-2">TC / MC / UC <span class="text-red-500">*</span></label>
+            <input type="text" id="tcmcuc" placeholder="e.g. UC-12 Hyderabad" required class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div id="step3" class="step">
+        <h2 class="text-2xl font-semibold mb-6 text-green-700">پیشہ اور دیگر</h2>
+        <div class="space-y-6">
+          <div>
+            <label class="block text-sm font-medium mb-2">Occupation / Profession Category <span class="text-red-500">*</span></label>
+            <select id="occupationCategory" required onchange="updateDesignationField()" class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+              <option value="">Select Category</option>
+              <option value="Advocate">Advocate / Lawyer / وکیل / Waseeqa Nawis</option>
+              <option value="Judge">Judge / Judicial Officer / جج</option>
+              <option value="Political">Political (MPA / MNA / Politician)</option>
+              <option value="Administration">Administration Department / Govt Officer</option>
+              <option value="LocalGovt">Local Government Employee</option>
+              <option value="Treasury">Treasury / Finance Dept (Govt)</option>
+              <option value="IT">IT Sector / Software / Tech</option>
+              <option value="Banking">Banking (Govt Banks / Private Banks / State Life)</option>
+              <option value="NADRA">NADRA Employee</option>
+              <option value="Media">Media / Press / Journalism</option>
+              <option value="RealEstate">Real Estate / Property Dealer</option>
+              <option value="Doctor">Doctor / Medical Professional</option>
+              <option value="Nurse">Nurse / Paramedical</option>
+              <option value="HospitalMgmt">Hospital Management / Admin</option>
+              <option value="Professor">Professor / Teacher / Academic</option>
+              <option value="Rescue1122">Rescue 1122 / Emergency Services</option>
+              <option value="Student">Student (School / College / University)</option>
+              <option value="Labour">Labour / Worker / Mazdoor</option>
+              <option value="Landlord">Landlord / Zameendar / Kisan</option>
+              <option value="SecurityGuard">Security Guard / Chowkidar</option>
+              <option value="PortQasim">Port Qasim Employee</option>
+              <option value="Shopkeeper">Shop Keeper / Dukandar</option>
+              <option value="Police">Police / قانون لاڳو ڪندڙ</option>
+              <option value="Army">Pakistan Army / رينجرز / ايف سي</option>
+              <option value="Govt">Other Government Job (BPS Scale)</option>
+              <option value="Private">Private Sector / ڪمپني نوڪري</option>
+              <option value="Business">Business / تجارت / دڪاندار</option>
+              <option value="Other">Other (ڪو ٻيو پيشو)</option>
+            </select>
+          </div>
+
+          <div id="designationContainer" class="hidden">
+            <label class="block text-sm font-medium mb-2">Designation / Rank <span class="text-red-500">*</span></label>
+            <select id="designation" class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+              <option value="">Select Designation</option>
+            </select>
+          </div>
+
+          <div id="otherDesignationContainer" class="hidden">
+            <label class="block text-sm font-medium mb-2">Specify Your Designation / Rank</label>
+            <input type="text" id="otherDesignation" class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="flex justify-between mt-10">
+        <button type="button" id="prevBtn" onclick="prevStep()" class="hidden px-8 py-4 bg-gray-200 hover:bg-gray-300 rounded-2xl font-semibold">پويونا</button>
+        <button type="button" id="nextBtn" onclick="nextStep()" class="px-8 py-4 bg-green-600 hover:bg-green-700 text-white rounded-2xl font-semibold">اڳيون </button>
+        <button type="button" id="submitBtn" onclick="submitForm()" class="hidden px-10 py-4 bg-green-700 hover:bg-green-800 text-white rounded-2xl font-semibold">Submit Form</button>
+      </div>
+
+    </form>
+  </div>
+
+  <script>
+    let currentStep = 1;
+    const totalSteps = 3;
+
+    function updateDesignationField() {
+      const category = document.getElementById('occupationCategory').value;
+      const designationContainer = document.getElementById('designationContainer');
+      const designationSelect = document.getElementById('designation');
+      const otherContainer = document.getElementById('otherDesignationContainer');
+
+      designationSelect.innerHTML = '<option value="">Select Designation / Rank</option>';
+      designationContainer.classList.add('hidden');
+      otherContainer.classList.add('hidden');
+
+      if (!category) return;
+
+      let options = [];
+
+      switch (category) {
+        case 'Advocate':
+          options = [
+            'Junior Advocate / New Lawyer',
+            'Advocate (District Courts)',
+            'Advocate High Court',
+            'Advocate Supreme Court',
+            'Senior Advocate Supreme Court',
+            'Legal Advisor / Consultant',
+            'Other Advocate Role'
+          ];
+          break;
+
+        case 'Judge':
+          options = [
+            'Civil Judge / Judicial Magistrate',
+            'Senior Civil Judge',
+            'Additional District & Sessions Judge',
+            'District & Sessions Judge',
+            'High Court Judge',
+            'Chief Justice High Court',
+            'Supreme Court Judge',
+            'Chief Justice of Pakistan',
+            'Other Judicial Officer'
+          ];
+          break;
+
+        case 'Political':
+          options = ['MPA', 'MNA', 'Senator', 'Minister', 'Advisor', 'Mayor/Chairman', 'Party Leader', 'Other Political'];
+          break;
+
+        case 'Administration':
+          options = ['Section Officer', 'Deputy Secretary', 'Additional Secretary', 'Secretary', 'Deputy Commissioner', 'Other Admin'];
+          break;
+
+        case 'LocalGovt':
+          options = ['Municipal Officer', 'Tehsil Officer', 'UC Secretary', 'Local Govt Assistant', 'Other Local Govt'];
+          break;
+
+        case 'Treasury':
+          options = ['Treasury Officer', 'Accountant', 'Assistant Treasury Officer', 'Senior Accounts Officer', 'Other Treasury'];
+          break;
+
+        case 'IT':
+          options = ['Software Developer', 'IT Officer', 'System Admin', 'Network Engineer', 'Data Analyst', 'IT Manager', 'Other IT'];
+          break;
+
+        case 'Banking':
+          options = ['Bank Clerk/Cashier', 'Bank Officer (OG-I to OG-III)', 'Branch Manager', 'State Life Agent/Officer', 'Other Banking'];
+          break;
+
+        case 'NADRA':
+          options = ['Junior Executive', 'Data Entry Operator', 'Registration Officer', 'Deputy Assistant Director', 'Assistant Director', 'Other NADRA Post'];
+          break;
+
+        case 'Media':
+          options = ['Reporter/Journalist', 'Editor', 'News Anchor', 'Media Manager', 'Other Media'];
+          break;
+
+        case 'RealEstate':
+          options = ['Property Dealer', 'Real Estate Agent', 'Builder/Developer', 'Sales Executive', 'Other Real Estate'];
+          break;
+
+        case 'Doctor':
+          options = ['MBBS Doctor/General Physician', 'Specialist/Consultant', 'Surgeon', 'Medical Officer', 'Other Doctor'];
+          break;
+
+        case 'Nurse':
+          options = ['Staff Nurse', 'Head Nurse', 'Nursing Superintendent', 'Paramedical Staff', 'Other Nursing'];
+          break;
+
+        case 'HospitalMgmt':
+          options = ['Hospital Administrator', 'Medical Superintendent', 'Hospital Manager', 'Other Hospital Mgmt'];
+          break;
+
+        case 'Professor':
+          options = ['School Teacher', 'College Lecturer', 'Assistant Professor', 'Professor', 'Principal', 'Other Academic'];
+          break;
+
+        case 'Rescue1122':
+          options = ['Emergency Medical Technician (EMT)', 'Rescue Technician', 'Fire Rescuer', 'Station House Incharge', 'Shift Incharge', 'Control Room Incharge', 'Other Rescue 1122 Rank'];
+          break;
+
+        case 'Student':
+          options = ['School Student', 'College Student', 'University Student', 'Other Student'];
+          break;
+
+        case 'Labour':
+          options = ['Daily Labourer', 'Factory Worker', 'Construction Labour', 'Other Labour'];
+          break;
+
+        case 'Landlord':
+          options = ['Zameendar/Landlord', 'Farmer/Kisan', 'Agriculturist', 'Other Land Related'];
+          break;
+
+        case 'SecurityGuard':
+          options = ['Security Guard', 'Security Supervisor', 'Armed Guard', 'Other Security'];
+          break;
+
+        case 'PortQasim':
+          options = ['Port Operator', 'Dock Worker', 'Port Engineer', 'Manager Port', 'Other Port Qasim Role'];
+          break;
+
+        case 'Shopkeeper':
+          options = ['Shop Owner/Dukandar', 'Retailer', 'Wholesaler', 'Other Retail'];
+          break;
+
+        case 'Police':
+          options = ['Constable', 'Head Constable (HC)', 'ASI', 'SI', 'Inspector', 'DSP/ASP', 'SP', 'Other Police'];
+          break;
+
+        case 'Army':
+          options = ['Sepoy/Soldier', 'Naik', 'Havildar', 'Lieutenant', 'Captain', 'Major', 'Other Army Rank'];
+          break;
+
+        case 'Govt':
+          options = ['BPS-01 to BPS-04', 'BPS-05 to BPS-09', 'BPS-11 to BPS-14', 'BPS-16 to BPS-17', 'BPS-18+', 'Other Govt Job'];
+          break;
+
+        case 'Other':
+        case 'Private':
+        case 'Business':
+          otherContainer.classList.remove('hidden');
+          return;
+
+        default:
+          otherContainer.classList.remove('hidden');
+          return;
+      }
+
+      options.forEach(opt => {
+        const option = document.createElement('option');
+        option.value = opt;
+        option.textContent = opt;
+        designationSelect.appendChild(option);
+      });
+
+      designationContainer.classList.remove('hidden');
+    }
+
+    function updateProgress() {
+      for (let i = 1; i <= totalSteps; i++) {
+        const dot = document.getElementById(`step${i}-dot`);
+        dot.classList.remove('bg-green-600', 'text-white');
+        if (i < currentStep) {
+          dot.classList.add('bg-green-600', 'text-white');
+        } else if (i === currentStep) {
+          dot.classList.add('bg-green-600', 'text-white');
+        } else {
+          dot.classList.add('bg-gray-300');
+        }
+      }
+    }
+
+    function showStep(step) {
+      document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+      document.getElementById(`step${step}`).classList.add('active');
+      
+      document.getElementById('prevBtn').classList.toggle('hidden', step === 1);
+      document.getElementById('nextBtn').classList.toggle('hidden', step === totalSteps);
+      document.getElementById('submitBtn').classList.toggle('hidden', step !== totalSteps);
+      
+      currentStep = step;
+      updateProgress();
+    }
+
+    function nextStep() {
+      if (currentStep < totalSteps) showStep(currentStep + 1);
+    }
+
+    function prevStep() {
+      if (currentStep > 1) showStep(currentStep - 1);
+    }
+
+    function goToStep(step) {
+      showStep(step);
+    }
+
+    function updateDistrictsAndCities() {
+      const province = document.getElementById('province').value;
+      const districtSelect = document.getElementById('district');
+      const citySelect = document.getElementById('city');
+
+      districtSelect.innerHTML = '<option value="">Select District</option>';
+      citySelect.innerHTML = '<option value="">Select City (Optional)</option>';
+
+      if (!province) return;
+
+      let districts = [];
+      let citiesByDistrict = {};
+
+      switch (province) {
+        case 'Sindh':
+          districts = [
+            'Karachi Central', 'Karachi East', 'Karachi South', 'Karachi West', 'Korangi', 'Malir', 'Keamari',
+            'Hyderabad', 'Badin', 'Dadu', 'Ghotki', 'Jacobabad', 'Jamshoro', 'Kashmore', 'Khairpur',
+            'Larkana', 'Matiari', 'Mirpurkhas', 'Naushahro Feroze', 'Qambar Shahdadkot', 'Sanghar',
+            'Shaheed Benazirabad (Nawabshah)', 'Shikarpur', 'Sukkur', 'Tando Allahyar', 'Tando Muhammad Khan',
+            'Tharparkar', 'Thatta', 'Umerkot', 'Sujawal'
+          ];
+          citiesByDistrict['Hyderabad'] = ['Hyderabad City', 'Latifabad', 'Qasimabad', 'Hala', 'Tando Jam'];
+          citiesByDistrict['Badin'] = ['Badin City', 'Talhar', 'Matli', 'Golarchi'];
+          citiesByDistrict['Dadu'] = ['Dadu City', 'Khairpur Nathan Shah', 'Mehar', 'Johi'];
+          citiesByDistrict['Ghotki'] = ['Ghotki City', 'Daharki', 'Ubauro', 'Mirpur Mathelo'];
+          citiesByDistrict['Jamshoro'] = ['kotri', 'sehwan','manjhand','san','qazi ahmed','kunri'];
+          citiesByDistrict['Jacobabad'] = ['Jacobabad City', 'Thul', 'Kashmore'];
+          citiesByDistrict['Khairpur'] = ['Khairpur City', 'Kingri', 'Faiz Ganj', 'Gambat'];
+          citiesByDistrict['Larkana'] = ['Larkana City', 'Dokri', 'Ratodero', 'Bakrani'];
+          citiesByDistrict['Mirpurkhas'] = ['Mirpurkhas City', 'Digri', 'Tando Jan Mohammad'];
+          citiesByDistrict['Sukkur'] = ['Sukkur City', 'Rohri', 'Pano Aqil'];
+          citiesByDistrict['Tharparkar'] = ['Mithi', 'Islamkot', 'Nagarparkar', 'Chhachhro'];
+          break;
+
+        case 'Punjab':
+          districts = [
+            'Lahore', 'Faisalabad', 'Rawalpindi', 'Multan', 'Gujranwala', 'Bahawalpur', 'Sialkot',
+            'Sargodha', 'Sahiwal', 'Rahim Yar Khan', 'Dera Ghazi Khan', 'Gujrat', 'Jhelum', 'Kasur',
+            'Okara', 'Sheikhupura', 'Vehari', 'Muzaffargarh', 'Khanewal', 'Mandi Bahauddin'
+          ];
+          citiesByDistrict['Lahore'] = ['Lahore City', 'Cantt', 'Model Town', 'Johar Town', 'DHA', 'Gulberg'];
+          citiesByDistrict['Faisalabad'] = ['Faisalabad City', 'Jaranwala', 'Samundri', 'Tandlianwala', 'Gojra'];
+          citiesByDistrict['Rawalpindi'] = ['Rawalpindi City', 'Satellite Town', 'Chaklala', 'Bahria Town'];
+          citiesByDistrict['Multan'] = ['Multan City', 'Cantt', 'Bosan Road', 'Shah Rukn-e-Alam'];
+          citiesByDistrict['Gujranwala'] = ['Gujranwala City', 'Wazirabad', 'Kamoke', 'Nowshera Virkan'];
+          break;
+
+        case 'Khyber Pakhtunkhwa':
+          districts = [
+            'Peshawar', 'Mardan', 'Abbottabad', 'Mansehra', 'Swat', 'Kohat', 'Dera Ismail Khan',
+            'Bannu', 'Nowshera', 'Charsadda', 'Haripur', 'Malakand', 'Swabi', 'Dir Upper', 'Dir Lower'
+          ];
+          citiesByDistrict['Peshawar'] = ['Peshawar City', 'Hayatabad', 'University Town', 'Warsak Road'];
+          citiesByDistrict['Mardan'] = ['Mardan City', 'Takht Bhai', 'Katlang'];
+          citiesByDistrict['Abbottabad'] = ['Abbottabad City', 'Havelian', 'Nawansher'];
+          citiesByDistrict['Swat'] = ['Mingora', 'Kabal', 'Matta', 'Khazana'];
+          break;
+
+        case 'Balochistan':
+          districts = ['Quetta', 'Gwadar', 'Turbat', 'Zhob', 'Khuzdar', 'Chaman', 'Pishin', 'Sibi', 'Loralai'];
+          citiesByDistrict['Quetta'] = ['Quetta City', 'Hazara Town', 'Satellite Town', 'Chiltan Town'];
+          break;
+
+        case 'Gilgit-Baltistan':
+          districts = ['Gilgit', 'Skardu', 'Diamer', 'Ghizer', 'Hunza', 'Nagar'];
+          citiesByDistrict['Gilgit'] = ['Gilgit City', 'Juglot', 'Danyor'];
+          break;
+
+        case 'Azad Kashmir':
+          districts = ['Muzaffarabad', 'Mirpur', 'Kotli', 'Bhimber', 'Poonch', 'Bagh'];
+          citiesByDistrict['Muzaffarabad'] = ['Muzaffarabad City', 'Domel', 'Chelhana'];
+          break;
+
+        case 'Islamabad':
+          districts = ['Islamabad'];
+          citiesByDistrict['Islamabad'] = ['G-9', 'F-7', 'F-8', 'Blue Area', 'G-10', 'Bahria Town Phase 8'];
+          break;
+      }
+
+      districts.forEach(dist => {
+        const option = document.createElement('option');
+        option.value = dist;
+        option.textContent = dist;
+        districtSelect.appendChild(option);
+      });
+
+      districtSelect.onchange = function() {
+        const selectedDist = districtSelect.value;
+        citySelect.innerHTML = '<option value="">Select City (Optional) or Write Manually</option>';
+
+        if (citiesByDistrict[selectedDist] && citiesByDistrict[selectedDist].length > 0) {
+          citiesByDistrict[selectedDist].forEach(cty => {
+            const opt = document.createElement('option');
+            opt.value = cty;
+            opt.textContent = cty;
+            citySelect.appendChild(opt);
+          });
+        } else {
+          const manualOpt = document.createElement('option');
+          manualOpt.value = "Other";
+          manualOpt.textContent = "Other / Manually Write";
+          citySelect.appendChild(manualOpt);
+        }
+      };
+
+      if (districtSelect.value) districtSelect.onchange();
+    }
+
+    function togglePasswordVisibility() {
+      const passwordInput = document.getElementById('password');
+      const eyeIcon = document.getElementById('eyeIcon');
+      
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        eyeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.542 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />';
+      } else {
+        passwordInput.type = 'password';
+        eyeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />';
+      }
+    }
+
+    function toggleConfirmPasswordVisibility() {
+      const confirmInput = document.getElementById('confirmPassword');
+      const eyeIconConfirm = document.getElementById('eyeIconConfirm');
+      
+      if (confirmInput.type === 'password') {
+        confirmInput.type = 'text';
+        eyeIconConfirm.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.542 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />';
+      } else {
+        confirmInput.type = 'password';
+        eyeIconConfirm.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />';
+      }
+    }
+
+    function checkPasswordStrength() {
+      const password = document.getElementById('password').value;
+      const strengthDiv = document.getElementById('passwordStrength');
+      
+      if (password.length === 0) {
+        strengthDiv.textContent = '';
+        strengthDiv.className = 'mt-2 text-sm font-medium';
+        return;
+      }
+
+      let strength = 0;
+      if (password.length >= 6) strength++;
+      if (password.length >= 10) strength++;
+      if (/[A-Z]/.test(password)) strength++;
+      if (/[0-9]/.test(password)) strength++;
+      if (/[^A-Za-z0-9]/.test(password)) strength++;
+
+      if (strength <= 2) {
+        strengthDiv.textContent = 'Weak Password 😕';
+        strengthDiv.className = 'mt-2 text-sm font-medium text-red-600';
+      } else if (strength === 3 || strength === 4) {
+        strengthDiv.textContent = 'Medium Password 🙂';
+        strengthDiv.className = 'mt-2 text-sm font-medium text-yellow-600';
+      } else {
+        strengthDiv.textContent = 'Strong Password 🔥';
+        strengthDiv.className = 'mt-2 text-sm font-medium text-green-600';
+      }
+    }
+
+    function submitForm() {
+      const castValue = document.getElementById('cast').value.trim();
+
+      if (!castValue || castValue.toLowerCase() !== "solangi") {
+        alert("❌ Yeh form sirf Solangi cast walon ke liye hai!\nPlease fill your correct cast (Solangi likhna zaroori hai).");
+        const castField = document.getElementById('cast');
+        castField.focus();
+        castField.classList.add('border-red-500', 'bg-red-50');
+        setTimeout(() => castField.classList.remove('border-red-500', 'bg-red-50'), 4000);
+        return;
+      }
+
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (password !== confirmPassword) {
+        alert("❌ Password aur Confirm Password match nahi kar rahe!\nDono same likho.");
+        document.getElementById('confirmPassword').focus();
+        return;
+      }
+
+      if (password.length < 6) {
+        alert("❌ Password bohot chhota hai! Kam az kam 6 characters hone chahiye.");
+        document.getElementById('password').focus();
+        return;
+      }
+
+      const formData = {
+        name: document.getElementById('name').value.trim(),
+        father: document.getElementById('father').value.trim(),
+        cast: document.getElementById('cast').value.trim(),
+        age: document.getElementById('age').value,
+        gender: document.querySelector('input[name="gender"]:checked')?.value || "Not selected",
+        username: document.getElementById('username').value.trim(),
+        password: password,
+        phone: document.getElementById('phone').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        address: document.getElementById('address').value.trim(),
+        province: document.getElementById('province').value,
+        district: document.getElementById('district').value,
+        city: document.getElementById('city').value,
+        tcmcuc: document.getElementById('tcmcuc').value.trim(),
+        occupationCategory: document.getElementById('occupationCategory').value,
+        designation: document.getElementById('designation').value || 
+                     document.getElementById('otherDesignation').value || 
+                     "Not specified"
+      };
+
+      console.log("Form Submitted (Solangi verified):", formData);
+      alert("🎉 Registration successful!\nUsername: " + formData.username + "\nAap Solangi hain – account ban gaya hai.");
+
+      // Fields clear karo
+      document.querySelectorAll('#regForm input, #regForm textarea, #regForm select').forEach(el => {
+        if (el.type === 'radio') {
+          el.checked = false;
+        } else if (el.type !== 'button' && el.type !== 'submit') {
+          el.value = '';
+        }
+      });
+
+      // Designation wale hide kar do
+      document.getElementById('designationContainer').classList.add('hidden');
+      document.getElementById('otherDesignationContainer').classList.add('hidden');
+
+      // Password strength reset
+      document.getElementById('passwordStrength').textContent = '';
+      document.getElementById('passwordStrength').className = 'mt-2 text-sm font-medium';
+
+      // Step 1 pe wapas
+      showStep(1);
+
+      // Pehla field pe focus
+      document.getElementById('name').focus();
+    }
+
+    tailwind.config = { content: ["*"] };
+    showStep(1);
+  </script>
+</body>
+</html>

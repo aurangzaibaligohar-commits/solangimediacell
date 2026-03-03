@@ -5,63 +5,142 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registration Form</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'solangi-dark': '#166534',
+            'solangi-light': '#86efac',
+            'solangi-accent': '#22c55e',
+            'solangi-bg': '#f0fdf4',
+            'solangi-surface': '#dcfce7'
+          },
+          fontFamily: {
+            'jakarta': ['Plus Jakarta Sans', 'sans-serif'],
+            'urdu': ['Noto Nastaliq Urdu', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      background: linear-gradient(135deg, #f0fdf4, #d1fae5, #a7f3d0);
+      min-height: 100vh;
+      background-attachment: fixed;
+    }
+    .urdu-text {
+      font-family: 'Noto Nastaliq Urdu', serif;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 10px 30px rgba(22, 101, 52, 0.15);
+    }
     .step { display: none; }
     .step.active { display: block; }
     .progress-bar { transition: all 0.4s; }
+    .step-dot {
+      transition: all 0.4s ease;
+      box-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
+    }
+    .step-dot.active {
+      background: linear-gradient(45deg, #166534, #22c55e);
+      transform: scale(1.2);
+      box-shadow: 0 0 25px rgba(34, 197, 94, 0.6);
+    }
+    .input-field {
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.9);
+    }
+    .input-field:focus {
+      border-color: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+      transform: translateY(-1px);
+    }
+    .btn-primary {
+      background: linear-gradient(to right, #166534, #22c55e);
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(34, 197, 94, 0.4);
+    }
+    .float-header {
+      animation: float 5s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    /* ... توھان جو پورو پراڻو style ... */
+
+.urdu-text,
+h1.urdu-text {
+  font-family: 'Noto Nastaliq Urdu', serif !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
   </style>
 </head>
-<body class="bg-gradient-to-br from-green-50 to-white min-h-screen font-sans">
+<body>
 
   <div class="max-w-2xl mx-auto pt-12 pb-20 px-4">
     <!-- Header -->
-    <div class="text-center mb-10">
-      <h1 class="text-4xl font-bold text-green-700">رجسٹریشن فارم</h1>
+    <div class="text-center mb-10 float-header">
+  <h1 class="text-4xl font-bold text-green-700 urdu-text">جسٽريشن فارم</h1>
       <p class="text-gray-600 mt-2">User Registration Form</p>
     </div>
 
     <!-- Progress -->
-    <div class="flex justify-between mb-8 px-4">
-      <div onclick="goToStep(1)" class="cursor-pointer text-center flex-1">
-        <div id="step1-dot" class="w-8 h-8 mx-auto rounded-full bg-green-600 text-white flex items-center justify-center text-sm font-bold">1</div>
-        <p class="text-xs mt-2 text-green-700">ذاتي معلومات</p>
-      </div>
+      <div class="flex justify-between mb-8 px-4 glass-card rounded-3xl p-4">
+        <div onclick="goToStep(1)" class="cursor-pointer text-center flex-1">
+          <div id="step1-dot" class="step-dot w-8 h-8 mx-auto rounded-full bg-green-600 text-white flex items-center justify-center text-sm font-bold">1</div>
+          <p class="text-xs mt-2 text-green-700 urdu-text">ذاتي معلومات</p>
+        </div>
       <div onclick="goToStep(2)" class="cursor-pointer text-center flex-1">
-        <div id="step2-dot" class="w-8 h-8 mx-auto rounded-full bg-gray-300 flex items-center justify-center text-sm font-bold">2</div>
-        <p class="text-xs mt-2 text-gray-500">رابطو ۽ پتو</p>
+        <div id="step2-dot" class="step-dot w-8 h-8 mx-auto rounded-full bg-gray-300 flex items-center justify-center text-sm font-bold">2</div>
+        <p class="text-xs mt-2 text-gray-500 urdu-text">رابطو ۽ پتو</p>
       </div>
       <div onclick="goToStep(3)" class="cursor-pointer text-center flex-1">
-        <div id="step3-dot" class="w-8 h-8 mx-auto rounded-full bg-gray-300 flex items-center justify-center text-sm font-bold">3</div>
-        <p class="text-xs mt-2 text-gray-500">پيشو ۽ ٻيا</p>
+        <div id="step3-dot" class="step-dot w-8 h-8 mx-auto rounded-full bg-gray-300 flex items-center justify-center text-sm font-bold">3</div>
+        <p class="text-xs mt-2 text-gray-500 urdu-text">پيشو ۽ ٻيا</p>
       </div>
     </div>
 
-    <form id="regForm" class="bg-white shadow-2xl rounded-3xl p-8">
+    <form id="regForm" class="glass-card shadow-2xl rounded-3xl p-8">
 
       <!-- Step 1 -->
       <div id="step1" class="step active">
-        <h2 class="text-2xl font-semibold mb-6 text-green-700">ذاتي معلومات</h2>
+        <h2 class="text-2xl font-semibold mb-6 text-green-700 urdu-text">ذاتي معلومات</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label class="block text-sm font-medium mb-2">Full Name *</label>
-            <input type="text" id="name" required class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+            <input type="text" id="name" required class="input-field w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
           </div>
           <div>
             <label class="block text-sm font-medium mb-2">Father Name *</label>
-            <input type="text" id="father" required class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+            <input type="text" id="father" required class="input-field w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
           </div>
           <div>
             <label class="block text-sm font-medium mb-2">Cast *</label>
-            <input type="text" id="cast" required class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+            <input type="text" id="cast" required class="input-field w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
           </div>
           <div>
             <label class="block text-sm font-medium mb-2">Age *</label>
-            <input type="number" id="age" min="10" max="100" required class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+            <input type="number" id="age" min="10" max="100" required class="input-field w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
           </div>
 
           <div>
             <label class="block text-sm font-medium mb-2">Username (login ke liye) *</label>
-            <input type="text" id="username" required placeholder="like: aurangzaib_solangi" class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+            <input type="text" id="username" required placeholder="like: aurangzaib_solangi" class="input-field w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
           </div>
           <div>
             <label class="block text-sm font-medium mb-2">Password *</label>
@@ -71,7 +150,7 @@
                 id="password" 
                 required 
                 placeholder=" Write Strong password " 
-                class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500 pr-12"
+                class="input-field w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500 pr-12"
                 oninput="checkPasswordStrength()"
               >
               <button 
@@ -96,7 +175,7 @@
                 id="confirmPassword" 
                 required 
                 placeholder="write again Password  " 
-                class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500 pr-12"
+                class="input-field w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500 pr-12"
               >
               <button 
                 type="button" 
@@ -136,6 +215,7 @@
 
         </div>
       </div>
+      
 
       <!-- Step 2 -->
       <div id="step2" class="step">
@@ -143,20 +223,20 @@
         <div class="space-y-6">
           <div>
             <label class="block text-sm font-medium mb-2">Phone Number <span class="text-red-500">*</span></label>
-            <input type="tel" id="phone" placeholder="+92 3XX XXXXXXX" required class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+            <input type="tel" id="phone" placeholder="+92 3XX XXXXXXX" required class="input-field w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
           </div>
           <div>
             <label class="block text-sm font-medium mb-2">Email Address <span class="text-red-500">*</span></label>
-            <input type="email" id="email" required class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+            <input type="email" id="email" required class="input-field w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
           </div>
           <div>
             <label class="block text-sm font-medium mb-2">Complete Address <span class="text-red-500">*</span></label>
-            <textarea id="address" rows="3" required class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500"></textarea>
+            <textarea id="address" rows="3" required class="input-field w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500"></textarea>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <label class="block text-sm font-medium mb-2">Province <span class="text-red-500">*</span></label>
-              <select id="province" required onchange="updateDistrictsAndCities()" class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+              <select id="province" required onchange="updateDistrictsAndCities()" class="input-field w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
                 <option value="">Select Province</option>
                 <option value="Sindh">Sindh</option>
                 <option value="Punjab">Punjab</option>
@@ -169,31 +249,31 @@
             </div>
             <div>
               <label class="block text-sm font-medium mb-2">District <span class="text-red-500">*</span></label>
-              <select id="district" required class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+              <select id="district" required class="input-field w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
                 <option value="">Select Province First</option>
               </select>
             </div>
             <div>
               <label class="block text-sm font-medium mb-2">City</label>
-              <select id="city" class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+              <select id="city" class="input-field w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
                 <option value="">Select District First</option>
               </select>
             </div>
           </div>
           <div>
             <label class="block text-sm font-medium mb-2">TC / MC / UC <span class="text-red-500">*</span></label>
-            <input type="text" id="tcmcuc" placeholder="e.g. UC-12 Hyderabad" required class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+            <input type="text" id="tcmcuc" placeholder="e.g. UC-12 Hyderabad" required class="input-field w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
           </div>
         </div>
       </div>
 
       <!-- Step 3 -->
       <div id="step3" class="step">
-        <h2 class="text-2xl font-semibold mb-6 text-green-700">پیشہ اور دیگر</h2>
+        <h2 class="text-2xl font-semibold mb-6 text-green-700">پيشو ۽ ٻيا</h2>
         <div class="space-y-6">
           <div>
-            <label class="block text-sm font-medium mb-2">Occupation / Profession Category <span class="text-red-500">*</span></label>
-            <select id="occupationCategory" required onchange="updateDesignationField()" class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+            <label class="block text-sm font-medium mb-2">Occupation / DesignationCategory <span class="text-red-500">*</span></label>
+            <select id="occupationCategory" required onchange="updateDesignationField()" class="input-field w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
               <option value="">Select Category</option>
               <option value="Advocate">Advocate / Lawyer / وکیل / Waseeqa Nawis</option>
               <option value="Judge">Judge / Judicial Officer / جج</option>
@@ -228,23 +308,23 @@
 
           <div id="designationContainer" class="hidden">
             <label class="block text-sm font-medium mb-2">Designation / Rank <span class="text-red-500">*</span></label>
-            <select id="designation" class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+            <select id="designation" class="input-field w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
               <option value="">Select Designation</option>
             </select>
           </div>
 
           <div id="otherDesignationContainer" class="hidden">
             <label class="block text-sm font-medium mb-2">Specify Your Designation / Rank</label>
-            <input type="text" id="otherDesignation" class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
+            <input type="text" id="otherDesignation" class="input-field w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500">
           </div>
         </div>
       </div>
 
       <!-- Navigation -->
       <div class="flex justify-between mt-10">
-        <button type="button" id="prevBtn" onclick="prevStep()" class="hidden px-8 py-4 bg-gray-200 hover:bg-gray-300 rounded-2xl font-semibold">پويونا</button>
-        <button type="button" id="nextBtn" onclick="nextStep()" class="px-8 py-4 bg-green-600 hover:bg-green-700 text-white rounded-2xl font-semibold">اڳيون </button>
-        <button type="button" id="submitBtn" onclick="submitForm()" class="hidden px-10 py-4 bg-green-700 hover:bg-green-800 text-white rounded-2xl font-semibold">Submit Form</button>
+        <button type="button" id="prevBtn" onclick="prevStep()" class="hidden px-8 py-4 bg-gray-200 hover:bg-gray-300 rounded-2xl font-semibold transition-all">پويونا</button>
+        <button type="button" id="nextBtn" onclick="nextStep()" class="px-8 py-4 btn-primary text-white rounded-2xl font-semibold transition-all">اڳيون </button>
+        <button type="button" id="submitBtn" onclick="submitForm()" class="hidden px-10 py-4 btn-primary text-white rounded-2xl font-semibold transition-all">Submit Form</button>
       </div>
 
     </form>
